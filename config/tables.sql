@@ -1,8 +1,9 @@
-CREATE TABLE "public.users" (
+CREATE TABLE "users" (
 	"id" serial NOT NULL,
 	"name" TEXT NOT NULL,
 	"email" TEXT NOT NULL UNIQUE,
 	"password" TEXT NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT 'NOW()',
 	CONSTRAINT "users_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -10,12 +11,13 @@ CREATE TABLE "public.users" (
 
 
 
-CREATE TABLE "public.urls" (
+CREATE TABLE "urls" (
 	"id" serial NOT NULL,
 	"shortUrl" TEXT NOT NULL UNIQUE,
 	"url" TEXT NOT NULL,
 	"userId" integer NOT NULL,
-	"visitCount" integer NOT NULL DEFAULT '0',
+	"visitCount" integer NOT NULL,
+	"createdAt" timestamp with time zone NOT NULL DEFAULT 'NOW()',
 	CONSTRAINT "urls_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -23,10 +25,11 @@ CREATE TABLE "public.urls" (
 
 
 
-CREATE TABLE "public.sessions" (
+CREATE TABLE "sessions" (
 	"id" serial NOT NULL,
 	"userId" integer NOT NULL,
 	"token" TEXT NOT NULL,
+	"createdAt" TIMESTAMP NOT NULL DEFAULT 'NOW()',
 	CONSTRAINT "sessions_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
