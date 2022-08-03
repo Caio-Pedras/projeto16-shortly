@@ -8,8 +8,9 @@ async function insertShortUrl(userId, url, shortUrl) {
   );
 }
 async function selectUrlById(id) {
-  return db.query(`SELECT * FROM `);
+  return db.query(`SELECT * FROM urls WHERE id=$1 `, [id]);
 }
 export const urlRepository = {
   insertShortUrl,
+  selectUrlById,
 };
