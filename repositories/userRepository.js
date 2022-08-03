@@ -6,13 +6,11 @@ async function getUserByEmail(email) {
 }
 
 async function insertUser(name, email, password) {
-  password = bcrypt.hashSync(password, 10);
+  const cryptPassword = bcrypt.hashSync(password, 10);
   return db.query(
-    `
-      INSERT INTO users (name, email, password)
-      VALUES ($1, $2, $3)
-      `,
-    [(name, email, password)]
+    `INSERT INTO users (name, email, password) 
+    VALUES ($1,$2,$3)`,
+    [name, email, cryptPassword]
   );
 }
 
