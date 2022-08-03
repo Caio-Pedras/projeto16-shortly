@@ -13,8 +13,11 @@ async function insertUser(name, email, password) {
     [name, email, cryptPassword]
   );
 }
-
+async function getUserById(id) {
+  return db.query(`SELECT * FROM users WHERE id= $1`, [id]);
+}
 export const userRepository = {
   getUserByEmail,
   insertUser,
+  getUserById,
 };

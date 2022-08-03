@@ -7,7 +7,10 @@ async function insertSession(userId, token) {
     [token, userId]
   );
 }
-
+async function getSessionByToken(token) {
+  return db.query(`SELECT * FROM sessions WHERE token = $1`, [token]);
+}
 export const sessionRepository = {
   insertSession,
+  getSessionByToken,
 };
