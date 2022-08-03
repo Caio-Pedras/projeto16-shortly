@@ -16,8 +16,7 @@ async function insertUser(name, email, password) {
   );
 }
 
-const userRepository = {
+export const userRepository = {
   getUserByEmail,
   insertUser,
 };
-export default userRepository;

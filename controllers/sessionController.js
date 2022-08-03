@@ -1,8 +1,7 @@
-import userRepository from "../repositories/userRepository.js";
 import bcrypt from "bcrypt";
 import { v4 as uuid } from "uuid";
-import db from "../config/db.js";
-import sessionRepository from "../repositories/sessionRepository.js";
+import { sessionRepository, userRepository } from "../repositories";
+
 export async function signUp(req, res) {
   const { name, email, password } = req.body;
   try {

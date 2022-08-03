@@ -8,7 +8,6 @@ async function insertSession(userId, token) {
   );
 }
 
-const sessionRepository = {
+export const sessionRepository = {
   insertSession,
 };
-export default sessionRepository;
