@@ -16,7 +16,7 @@ CREATE TABLE "urls" (
 	"shortUrl" TEXT NOT NULL UNIQUE,
 	"url" TEXT NOT NULL,
 	"userId" integer NOT NULL,
-	"visitCount" integer NOT NULL,
+	"visitCount" integer NOT NULL DEFAULT '0',
 	"createdAt" timestamp with time zone NOT NULL DEFAULT 'NOW()',
 	CONSTRAINT "urls_pk" PRIMARY KEY ("id")
 ) WITH (

@@ -11,7 +11,7 @@ async function selectUrlById(id) {
   return db.query(`SELECT * FROM urls WHERE id=$1 `, [id]);
 }
 async function selectUrlByShortUrl(shortUrl) {
-  return db.query(`SELECT * FROM urls WHERE shortUrl=$1 `, [shortUrl]);
+  return db.query(`SELECT * FROM urls WHERE "shortUrl"=$1 `, [shortUrl]);
 }
 async function updateVisitCount(id) {
   return db.query(

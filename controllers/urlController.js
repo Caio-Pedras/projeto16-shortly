@@ -40,7 +40,7 @@ export async function openUrl(req, res) {
       return res.sendStatus(404);
     }
     await urlRepository.updateVisitCount(url.id);
-    res.redirect([200], url.url);
+    res.redirect(url.url);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
