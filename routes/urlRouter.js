@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { validateSchema } from "../middlewares/schemaValidator.js";
 import {
-  deleteUrlById,
+  deleteUrl,
   getUrlById,
   openUrl,
   reduceUrl,
@@ -19,6 +19,6 @@ urlRouter.post(
 );
 urlRouter.get("/urls/:id", getUrlById);
 urlRouter.get("/urls/open/:shortUrl", openUrl);
-urlRouter.delete("/urls/:id", validateToken, deleteUrlById);
+urlRouter.delete("/urls/:id", validateToken, deleteUrl);
 
 export default urlRouter;
