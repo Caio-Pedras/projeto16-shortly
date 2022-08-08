@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import { v4 as uuid } from "uuid";
+import db from "../config/db.js";
 import { sessionRepository, userRepository } from "../repositories/index.js";
 
 export async function signUp(req, res) {
@@ -27,6 +28,11 @@ export async function signIn(req, res) {
       return res.sendStatus(401);
     }
     if (bcrypt.compareSync(password, user.password)) {
+      const { rows: verifySession } =
+        await sessionRepository.getSessionByUserId(user.id);
+      if (verifySession) {
+        return res.send(verifySession[0].token);
+      }
       const token = uuid();
       await sessionRepository.insertSession(user.id, token);
       return res.send(token);
