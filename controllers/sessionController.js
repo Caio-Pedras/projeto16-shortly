@@ -36,7 +36,7 @@ export async function signIn(req, res) {
       const token = uuid();
       await sessionRepository.insertSession(user.id, token);
 
-      return res.send({ token, user: user.name });
+      return res.send({ token: token, user: user.name });
     }
   } catch (err) {
     console.log(err);
