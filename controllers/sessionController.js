@@ -30,7 +30,7 @@ export async function signIn(req, res) {
     if (bcrypt.compareSync(password, user.password)) {
       const { rows: verifySession } =
         await sessionRepository.getSessionByUserId(user.id);
-      if (verifySession) {
+      if (verifySession[0]) {
         return res.send({ token: verifySession[0].token, user: user.name });
       }
       const token = uuid();
