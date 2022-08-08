@@ -45,8 +45,8 @@ async function sumVisitCount(userId) {
 async function getUrlsRanking() {
   return db.query(
     `SELECT users.id AS id, users.name AS name, COUNT(urls.id) AS "linksCount", SUM(urls."visitCount") AS "visitCount"
-    FROM urls
-    LEFT JOIN users ON urls."userId" = users.id
+    FROM users
+    LEFT JOIN urls ON urls."userId" = users.id
     GROUP BY users.id
     ORDER BY "visitCount" DESC
     LIMIT 10
