@@ -31,15 +31,12 @@ export async function signIn(req, res) {
       const { rows: verifySession } =
         await sessionRepository.getSessionByUserId(user.id);
       if (verifySession) {
-        return res.send(verifySession[0].token);
+        return res.send({ token: verifySession[0].token, user: user.name });
       }
       const token = uuid();
       await sessionRepository.insertSession(user.id, token);
-      const data = {
-        token,
-        user: user.name,
-      };
-      return res.send(data);
+
+      return res.send({ token, user: user.name });
     }
   } catch (err) {
     console.log(err);
